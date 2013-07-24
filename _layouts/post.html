@@ -4,16 +4,9 @@ title: VirtualMonitor
 ---
 
 <div class='home-box' id='home-center'>
-
   <div class='post'>
-<div class='body'>
-<h2> What is VirtualMonitor </h2>
-{% capture VirtualMonitorIntroducing %}
-    {% include VirtualMonitorIntroducing.md %}
-  {% endcapture %}
-  {{ VirtualMonitorIntroducing | markdownify }}
-
-</div>
+  <h2><a href='{{page.url}}'>{{page.title}}</a></h2>
+  <div class='body'>{{ content }}</div>
     <a href='{{post.url}}#disqus_thread'>View Comments</a>
   </div>
 </div>

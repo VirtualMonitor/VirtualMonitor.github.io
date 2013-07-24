@@ -1,4 +1,1 @@
-VirtualMonitor.github.io
-========================
-
-HomePage
+VirtualMonitor
