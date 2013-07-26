@@ -25,15 +25,15 @@ title: Build Instructions
 6. Install Microsoft Visual Studio 2010 Service Pack 1. 
 [http://www.microsoft.com/downloads/en/details.aspx?FamilyID=75568aa6-8107-475d-948a-ef22627e57a5](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=75568aa6-8107-475d-948a-ef22627e57a5)
 
-7. LibJpeg-turbo, I am using 1.3. download libjpeg-turbo-1.3.0-vc64.exe for 64bit, libjpeg-turbo-1.3.0-vc.exe for 32bit.
+7. LibJpeg-turbo, I am using 1.3. download libjpeg-turbo-1.3.0-vc64.exe for 64bit, libjpeg-turbo-1.3.0-vc.exe for 32bit. if you just want build driver only, then you do not need LibJpeg-turbo.
 [http://sourceforge.net/projects/libjpeg-turbo/files](http://sourceforge.net/projects/libjpeg-turbo/files)
 
 #### Windows build ####
-1. Change to the root directory and execute our configure script to setup your build environment(suppose libjpeg-turbo installed to c:\libjpeg-turbo): cscript configure.vbs --with-libjpeg=c:\libjpeg-turbo 
+1. Change to the root directory and execute our configure script to setup your build environment(suppose libjpeg-turbo installed to c:\libjpeg-turbo): cscript configure.vbs --with-libjpeg=c:\libjpeg-turbo. if you just want build driver only, you do not need LibJpeg, just enter: cscript configure.vbs --driver-only
 
 2. Change to the root directory of the sources and enter our build shell environment: env.bat 
 
-3. To build a release package, type kmk. This produces the binaries in out\win.x86\release\bin. If you want to build a debug version, enter kmk KBUILD_TYPE=debug. if you want build 64bit version. enter kmk KBUILD_TARGET=amd64
+3. To build a release package, type kmk. This produces the binaries in out\win.x86\release\bin. If you want to build a debug version, enter kmk KBUILD_TYPE=debug. if you want build 64bit version. enter kmk KBUILD_TARGET_ARCH=amd64
 
 ### <a name="NoVS2010"></a>
 #### I want use other Virtual C++ instead of 2010. ####
