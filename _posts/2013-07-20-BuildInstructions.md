@@ -72,5 +72,14 @@ configure.vbs will output two files: AutoConfig.kmk containing information where
         set PATH=%PATH%;C:/PROGRA~1/MICROS~2.0/VC/bin;
         set PATH=%PATH%;C:\dev\MyVbox/tools/win.x86/bin;
 
+[Build Driver on windows with nmake](#nmake)
+
+In order to run static analysis for driver, we have to build driver with nmake.
+
+1. Open a shell and enter source code directory, then run cscript configure.vbs --nmake. this will copy related source file to out/nmake/xpdm and generated env.bat and  source.inc
+
+2. Then open DDK Build environment shell, e.g. Windows XP X86 Check Build Environment. and enter out/nmake/xpdm directory
+
+3. run env.bat first, then run nmake.
 
 ### Build on Linux ###
