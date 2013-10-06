@@ -78,6 +78,6 @@ In order to run static analysis for driver, we have to build driver with nmake.
 
 1. Open a shell and enter source code directory, then run cscript configure.vbs --nmake. this will copy related source file to out/nmake/xpdm and generated source.inc
 
-2. Then open DDK Build environment shell, e.g. Windows XP X86 Free Build Environment.  then enter nmake
+2. Then open DDK Build environment shell, e.g. Windows XP X86 Free Build Environment.  go to out\nmake\xpdm directory, then enter nmake
 
 ### Build on Linux ###
