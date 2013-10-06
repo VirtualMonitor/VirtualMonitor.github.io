@@ -76,10 +76,8 @@ configure.vbs will output two files: AutoConfig.kmk containing information where
 
 In order to run static analysis for driver, we have to build driver with nmake.
 
-1. Open a shell and enter source code directory, then run cscript configure.vbs --nmake. this will copy related source file to out/nmake/xpdm and generated env.bat and  source.inc
+1. Open a shell and enter source code directory, then run cscript configure.vbs --nmake. this will copy related source file to out/nmake/xpdm and generated source.inc
 
-2. Then open DDK Build environment shell, e.g. Windows XP X86 Check Build Environment. and enter out/nmake/xpdm directory
-
-3. run env.bat first, then run nmake.
+2. Then open DDK Build environment shell, e.g. Windows XP X86 Free Build Environment.  then enter nmake
 
 ### Build on Linux ###
