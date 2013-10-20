@@ -9,7 +9,7 @@ h2. Current Contributor
 Project founder. Ported/implemented fisrt version of VirtualMonitor. to demonstrate that Porting VirtualBox Guest Addition Display driver + libvncserver is feasible. His email: <a href="mailto:Derek0883@gmail.com">Derek0883@gmail.com</a>
 
 * Anshul Makkar
-Currently working on WDDM driver. he has made a big step for WDDM, now if you running his WDDM VirtualMonitor driver, you can see multiple monitor in the Desktop -> properties window. you can find his nice WDDM hook driver articles(Extension of Desktop Win/Windows 7/Vista 1-5) on his website. <a href=http://www.justkernel.com/ target='_blank'>Anshul Makkar's website</a>. His email: <a href="mailto:anshul_makkar@justkernel.com">anshul_makkar@justkernel.com</a>
+Currently working on WDDM driver. he has made a big step for WDDM, now if you running his WDDM VirtualMonitor driver, you can see multiple monitor in the Desktop -> properties window. you can find his nice WDDM hook driver articles(Extension of Desktop Win/Windows 7/Vista 1-5) on his website. <a href="http://www.justkernel.com/" target="_blank">Anshul Makkar's website</a>. His email: <a href="mailto:anshul_makkar@justkernel.com">anshul_makkar@justkernel.com</a>
 
 * yuliangz
 Currently working on XPDM Driver Installer. Currently we can only install XPDM driver through "Add hardware wizard", it takes too many step. and we didn't find public way to do that through program. he will do some reverse research on that. His email: <a href="mailto:ryozhou@gmail.com">ryozhou@gmail.com</a>
