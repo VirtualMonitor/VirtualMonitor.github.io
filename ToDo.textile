@@ -1,0 +1,28 @@
+---
+layout: master
+title: Roadmap
+---
+
+h2. Short term
+
+* Optimize cursor movement.
+  Currently virtual monitor using VNC. But for mouse movement, there is little difference. typically, VNC client will send mouse move message to server, and client will draw cursor. But for virtual monitor, Mouse movement was triggered by server, in current implementation, every Mouse moving, we need sent two frame pictures to client. e.g. move cursor from point A to point B. we need restore background of A, and draw cursor on B. And mouse sampling frequency make it even worse. e.g. you move cursor from A to B, actually, we may get N MOUSE_MOVE event. 
+The better idea is, when cursor shape was changed, Send new shape to client. when cursor was moved, then send cursor coordinate instead of pixels data, client will draw cursor locally.
+Yes current VNC protocol support this feature. but it controlled by client. e.g. if you are using vncviewer, you can specify ViewOnly=1 UseLocalCursor=0. But use may not specify this argument when they are connect to virtual monitor. I want server side can force this behavior.
+
+
+* Optimize Window movement.
+  Currently, if you click and hold left mouse button, then drag a window from position A to B. the whole window pixel data will be sent. for a 800x600 with 32bit true color window, 800*600*4 = 1,920,000. almost 2M byte, and don't including the any protocol header, e.g TCP/UDP header, IP header. although we are using JPEG compress, but reduce the data size is very important. especially for mobile device which only has wifi. a better way show as following picture, which only need send the dotted line over network.
+
+<p><img src="/images/WindowMove.PNG" alt="" /></p>
+
+* bug fix
+
+h2. Long term
+
+* Windows WDDM Driver
+We can't port virtualbox's WDDM guest addition driver to host directly, just like what i did for XPDM driver. Based on <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/gg487363.aspx" target="_blank"> MSND</a>
+If multiple graphics adapters are present in a system, all of them must use the same WDDM driver. 
+
+* Linux Driver
+  Based on Virtual CRTC driver. 

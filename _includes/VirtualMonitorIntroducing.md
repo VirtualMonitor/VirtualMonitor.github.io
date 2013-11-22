@@ -1,4 +1,12 @@
+VirtualMonitor 0.2.0 Beta released
+1. Support Windows 2000 to Windows 7. when you run virtual monitor on windows7, it will disable Aero Glass automatically, and it will be enable when virtual monitor exit.
+2. You can install or remove Driver with a simple command. Run WinDrvInstaller.exe -i for installing. WinDrvInstaller.exe -u for removing.
+3. Support both 32bit and 64bit.
+4. test mode support for developer. 
+	* if you want do some enhancement for VNC part of VirtualMonitor. you do not care the driver, you can run VirtualMonitor with -dummy. the it will generate generate some random dirty pixels data. then you can debugging it.
+	* if you want implement a driver on a new OS platform, e.g. Linux. Then fisrt step, you just focus on how to implement the driver, and dump out the frame buffer to a file. then you can run VirtualMonitor with -tf filename. To check your driver is work or not. once it works. it is easy make it works with virtualMonitor. you can download an example ScreenRawCap.bin file <a href="images/ScreenRawCap.bin" target="_blank"> here </a>. then you run virtualmonitor -tf ScreenRawCap.bin. it is 800x600x32.
 
+## What is VirtualMonitor ##
 VirtualMonitor is a cross-platform opensource software, it allows you to use compute, tablet, smartphone as a second monitor for your primary computer. The following snapshot is an example of using IPad as a second monitor. 
 ![Ipad As 2nd Monitor](/images/IpadAs2ndMonitor.png "Ipad As 2nd Monitor")
 

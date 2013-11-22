@@ -2,6 +2,22 @@
 layout: post
 title: Install & Uninstall 
 ---
+For 0.2.0 Beta, Open a command shell, 
+
+1. WinDrvInstaller.exe -i for installing.
+2. WinDrvInstaller.exe -u for removing.
+
+If you are using Windows vista/Windows7, make sure "Run as administrator"
+
+![Run As administrator](/images/RunAsAdmin.png "Run As administrator")
+
+For 32bit version, we did not sign the driver, please ignore signature warning, just click "Continue Anyway".
+
+![ignore](/images/Install_Step11.PNG "ignore signature warning")
+
+For 64bit version, Windows will refuse to load and run the driver without signature. and fortunately [ReactOS](https://www.reactos.org/) can help us sign the 64bit version.
+
+<!--
 [Install Driver on windows XP or later](#InstallDriverOnWindows)
 
 [Install Driver on 2000](#InstallDriverOnWindows2000)
@@ -69,4 +85,5 @@ title: Install & Uninstall
 #### Choose Device Manager -> Display adapters -> VirtualMonitor Graphics Adapter, right click -> Uninstall ####
 
 ![Uninstall](/images/Remove_Step2.PNG "Uninstall")
+-->
 
