@@ -16,13 +16,52 @@ Yes current VNC protocol support this feature. but it controlled by client. e.g.
 
 <p><img src="/images/WindowMove.PNG" alt="" /></p>
 
+* GUI 
+
 * bug fix
 
 h2. Long term
 
-* Windows WDDM Driver
-We can't port virtualbox's WDDM guest addition driver to host directly, just like what i did for XPDM driver. Based on <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/gg487363.aspx" target="_blank"> MSND</a>
-If multiple graphics adapters are present in a system, all of them must use the same WDDM driver. 
+Once basic function works, Then we can focus on driver side, and USB, there are lots of work challenge, also lots of fun.
 
-* Linux Driver
-  Based on Virtual CRTC driver. 
+h3. Windows WDDM Driver
+
+	We can't port virtualbox's WDDM guest addition driver to host directly, just like what i did for XPDM driver. Based on <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/gg487363.aspx" target="_blank"> MSND</a> If multiple graphics adapters are present in a system, all of them must use the same WDDM driver. So WDDM driver is not easy. 
+
+1. WDDM Hook
+ We can do a WDDM Hook, if request for real hardware, then just pass it to under line real driver. otherwise handle by our virtual driver. <a href="http://www.justkernel.com/Blogs/" target="_blank">Anshul Makkar</a> did some research on this approach. But didn't handle any GPU command. VirtualBox Guest addition WDDM driver is using <a href="http://chromium.sourceforge.net" target="_blank"> chromium </a> to handle GPU command. and probably can use WDDM Hook + chromium to implement this. 
+
+* Advantage 1: We can reuse lot's of VirtualBox's code.  
+* Advantage 2: Chromium can using real GPU handle 3D command efficiently. If request send to VirtualMonitor, we forward it to Chromium service, Chromium will send request to real GPU.
+
+* Drawback: WDDM Hook is not support by microsoft, it is hard to make sure WDDM Hook Driver stable, and require some reverse researching.
+
+2. Virtual output connector 
+  usually a real GPU has multipule output connector. e.g. for my thinkpad T430, there are following connector avalible:
+
+* LVDS1 connected 1600x900+0+0 (normal left inverted right x axis y axis) 310mm x 174mm
+* VGA1 disconnected (normal left inverted right x axis y axis)
+* HDMI1 disconnected (normal left inverted right x axis y axis)
+* DP1 disconnected (normal left inverted right x axis y axis)
+* HDMI2 disconnected (normal left inverted right x axis y axis)
+* HDMI3 disconnected (normal left inverted right x axis y axis)
+* DP2 disconnected (normal left inverted right x axis y axis)
+* DP3 disconnected (normal left inverted right x axis y axis)
+
+	if you connect a external monitor to VGA1, then it will generate an interrupt, and GPU's interrupt handler will be called, and it will read EDID through IIC bus, then driver will get enough information. e.g. the verdon of the connected monitor, and the supported resolution. probally, we can simulate this process. Then GPU driver handle all Command, and We just dump out the frame buffer.
+	
+* Advantage: All command handled by real GPU.
+* Drawback: No public way.
+
+h3. Linux Driver
+
+1. Re use VirtualBox Guest addition driver, and it support lot's of Linux version, e.g. Fedora/Ubuntu.
+
+2. Using the ihadzic's Virtual CRTC approach. his code are <a href="https://github.com/ihadzic/linux-vcrtcm" target="_blank"> here </a> And his proposal are <a href="http://lists.freedesktop.org/archives/dri-devel/2011-November/015975.html" target="_blank"> here </a> He implement this for AMD/ATI Radeon GPU. For different GPU, it requires different implementation.
+	A better way is implement a uniform interface on <a href="http://dri.freedesktop.org/wiki/DRM" target="_blank">DRM</a>, DRM query under layer GPU driver if it is support Virtual CRTC feature. if it is, then the driver need regist some callback to drm layer during driver initialization.
+
+h3. USB support
+
+  The goal of VirtualMonitor is make any Mobile device or compute can be used as a monitor. So USB support is important. we can use libusb. but for USB, we can't use web browser any more. we need a program run on device side.
+
+
